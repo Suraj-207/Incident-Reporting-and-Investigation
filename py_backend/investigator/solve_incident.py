@@ -9,7 +9,8 @@ class Incident:
     def display_all_incidents(self):
         try:
             return list(config.mongo_db.my_db['incident'].find({
-                "investigator_email": self.email
+                "investigator_email": self.email,
+                "approved": True
             }))
         except Exception as e:
             config.logger.log("ERROR", str(e))
@@ -25,7 +26,9 @@ class Incident:
             return {"status": False, "message": "Internal Server Error"}
 
     def edit_incident(self, _id, record):
-        pass
+        new_val = {"_id": _id}
+        condition = {"$set": {"report": record['report']}}
+        return config.mongo_db.update("incident", new_val, condition)
 
 
 

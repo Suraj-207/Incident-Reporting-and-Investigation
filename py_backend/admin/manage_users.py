@@ -33,7 +33,7 @@ class Users:
             to = "To: {} <{}>\n".format(record['firstname'] + " " + record['lastname'], record['email'])
             subject = "Subject: Registration in HSSERISK - IRAI successful\n\n"
             msg = "Welcome to HSSERISK - Incident Reporting and Investigation. You have been registered by" \
-                  "{}, {}. \nEmail - {}\nPassword - {}\nRoles - {}\n\nDo not share it with anyone.  ".format(
+                  " {}, {}. \nEmail - {}\nPassword - {}\nRoles - {}\n\nDo not share it with anyone.  ".format(
                                                                                                     data['company'],
                                                                                                     data['branch'],
                                                                                                     record['email'],

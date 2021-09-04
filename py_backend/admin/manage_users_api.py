@@ -57,7 +57,7 @@ class DeleteUser(Resource):
             return {"status": False, "message": "Internal Server Error"}
 
 
-class DisplayAllUsers(Resource):
+class DisplayUser(Resource):
 
     def post(self):
         try:
@@ -74,7 +74,7 @@ class DisplayAllUsers(Resource):
             return {"status": False, "message": "Internal Server Error"}
 
 
-class DisplayUser(Resource):
+class DisplayAllUsers(Resource):
 
     def post(self):
         try:
