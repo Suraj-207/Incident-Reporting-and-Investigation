@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash
 from dotenv import load_dotenv
 import os
 from py_backend.signup.signup_user import Registration
+import random
 
 
 class Users:
@@ -18,9 +19,10 @@ class Users:
 
     def insert_user(self, record):
         try:
+            default_password = str(random.randint(9999999, 100000000))
             data = {
                 "_id": record['email'],
-                "password": generate_password_hash("password"),
+                "password": generate_password_hash(default_password),
                 "firstname": record['firstname'],
                 "lastname": record['lastname'],
                 "role": record['role'],
@@ -31,10 +33,12 @@ class Users:
             to = "To: {} <{}>\n".format(record['firstname'] + " " + record['lastname'], record['email'])
             subject = "Subject: Registration in HSSERISK - IRAI successful\n\n"
             msg = "Welcome to HSSERISK - Incident Reporting and Investigation. You have been registered by" \
-                  "{}, {}. \nEmail - {}\nPassword - {}\n\nDo not share it with anyone.  ".format(record['company'],
-                                                                                                 record['branch'],
-                                                                                                 record['email'],
-                                                                                                 'password')
+                  "{}, {}. \nEmail - {}\nPassword - {}\nRoles - {}\n\nDo not share it with anyone.  ".format(
+                                                                                                    record['company'],
+                                                                                                    record['branch'],
+                                                                                                    record['email'],
+                                                                                                    default_password,
+                                                                                                    str(record['role']))
             message = from_ + to + subject + msg
             return Registration(data, message).insert_to_db()
         except Exception as e:
@@ -80,9 +84,3 @@ class Users:
         except Exception as e:
             config.logger.log("ERROR", str(e))
             return {"status": False, "message": "Internal Server Error"}
-
-
-
-
-
-
