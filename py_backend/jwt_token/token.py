@@ -15,7 +15,7 @@ class Token:
         except Exception as e:
             config.logger.log("ERROR", str(e))
 
-    def generate_token(self, email, user):
+    def generate_token(self, email, role):
         """
 
         :param email: email of the user
@@ -25,7 +25,7 @@ class Token:
         try:
             encoded_token = encode({
                 "email": email,
-                "user": user,
+                "role": role,
                 "exp": datetime.datetime.utcnow() + datetime.timedelta(weeks=1)
             }, self.secret_key, self.algorithm)
             config.logger.log("INFO", "Token generated...")
