@@ -16,9 +16,9 @@ class IsValidToken(Resource):
                 config.logger.log("INFO", "Token is valid...")
                 return {
                     "email": decoded_token['decoded_token']['email'],
-                    "user": decoded_token['decoded_token']['user'],
+                    "role": decoded_token['decoded_token']['role'],
                     "token": token.generate_token(decoded_token['decoded_token']['email'],
-                                                  decoded_token['decoded_token']['user']),
+                                                  decoded_token['decoded_token']['role']),
                 }
             else:
                 config.logger.log("CRITICAL", "Token has expired...")

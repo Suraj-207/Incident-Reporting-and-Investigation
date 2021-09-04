@@ -7,6 +7,8 @@ from py_backend.logger.log_db import Logger
 from py_backend.mongo_db.crud import Operations
 from py_backend.signup.signup_api import Signup
 from py_backend.login.login_api import Login
+from py_backend.jwt_token.token_validation_api import IsValidToken
+from py_backend.admin.manage_users_api import InsertUser, DeleteUser, UpdateUser, DisplayUser, DisplayAllUsers
 
 
 app = Flask(__name__, template_folder='./py_backend/', static_url_path='', static_folder='./frontend/build')
@@ -23,6 +25,12 @@ def home_page(path):
 
 api.add_resource(Signup, '/api/signup')
 api.add_resource(Login, '/api/login')
+api.add_resource(IsValidToken, '/api/check-token')
+api.add_resource(InsertUser, '/api/insert-user')
+api.add_resource(UpdateUser, '/api/update-user')
+api.add_resource(DeleteUser, '/api/delete-user')
+api.add_resource(DisplayUser, '/api/display-user')
+api.add_resource(DisplayAllUsers, '/api/display-all-users')
 
 
 if __name__ == '__main__':
