@@ -34,8 +34,8 @@ class Users:
             subject = "Subject: Registration in HSSERISK - IRAI successful\n\n"
             msg = "Welcome to HSSERISK - Incident Reporting and Investigation. You have been registered by" \
                   "{}, {}. \nEmail - {}\nPassword - {}\nRoles - {}\n\nDo not share it with anyone.  ".format(
-                                                                                                    record['company'],
-                                                                                                    record['branch'],
+                                                                                                    data['company'],
+                                                                                                    data['branch'],
                                                                                                     record['email'],
                                                                                                     default_password,
                                                                                                     str(record['role']))
