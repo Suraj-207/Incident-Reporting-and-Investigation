@@ -24,4 +24,8 @@ class Incident:
             config.logger.log("ERROR", str(e))
             return {"status": False, "message": "Internal Server Error"}
 
+    def edit_incident(self, _id, record):
+        pass
+
+
 
