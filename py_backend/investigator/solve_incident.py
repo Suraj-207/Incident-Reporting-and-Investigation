@@ -1,4 +1,5 @@
 import config
+from py_backend.image_handler.img_to_b64 import ImageConvert
 
 
 class Incident:
@@ -25,10 +26,23 @@ class Incident:
             config.logger.log("ERROR", str(e))
             return {"status": False, "message": "Internal Server Error"}
 
-    def edit_incident(self, _id, record):
-        new_val = {"_id": _id}
-        condition = {"$set": {"report": record['report']}}
-        return config.mongo_db.update("incident", new_val, condition)
+    def edit_report(self, _id, report):
+        try:
+            new_val = {"_id": _id}
+            condition = {"$set": {"report": report}}
+            return config.mongo_db.update("incident", new_val, condition)
+        except Exception as e:
+            config.logger.log("ERROR", str(e))
+            return {"status": False, "message": "Internal Server Error"}
+
+    def add_evidence(self, _id, image):
+        try:
+            new_val = {"_id": _id}
+            condition = {"$push": {"evidence": ImageConvert().convert_to_b64(image)}}
+            return config.mongo_db.update("incident", new_val, condition)
+        except Exception as e:
+            config.logger.log("ERROR", str(e))
+            return {"status": False, "message": "Internal Server Error"}
 
 
 
