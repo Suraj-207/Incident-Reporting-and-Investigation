@@ -10,6 +10,7 @@ from py_backend.login.login_api import Login
 from py_backend.jwt_token.token_validation_api import IsValidToken
 from py_backend.admin.manage_users_api import InsertUser, DeleteUser, UpdateUser, DisplayUser, DisplayAllUsers
 from py_backend.employee.report_incident_api import AddIncident, DisplayIncident
+from py_backend.investigator.solve_incident_api import DisplayAllIncidents, DisplayIncidentById, EditIncident
 
 
 app = Flask(__name__, template_folder='./py_backend/', static_url_path='', static_folder='./frontend/build')
@@ -34,6 +35,9 @@ api.add_resource(DisplayUser, '/api/display-user')
 api.add_resource(DisplayAllUsers, '/api/display-all-users')
 api.add_resource(AddIncident, '/api/add-incident')
 api.add_resource(DisplayIncident, '/api/display-incident')
+api.add_resource(DisplayAllIncidents, '/api/display-all-incidents')
+api.add_resource(DisplayIncidentById, '/api/display-incident-by-id')
+api.add_resource(EditIncident, '/api/edit-incident')
 
 
 if __name__ == '__main__':

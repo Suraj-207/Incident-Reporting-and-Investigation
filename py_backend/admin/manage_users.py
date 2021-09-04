@@ -22,7 +22,7 @@ class Users:
             default_password = str(random.randint(9999999, 100000000))
             data = {
                 "email": record['email'],
-                "password": generate_password_hash(default_password),
+                "password": default_password,
                 "firstname": record['firstname'],
                 "lastname": record['lastname'],
                 "role": record['role'],
